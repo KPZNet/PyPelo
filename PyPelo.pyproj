@@ -5,13 +5,16 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{c14aca69-e4cb-46dc-91a1-04429305a383}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>PyPelo\peloton_data.py</StartupFile>
+    <StartupFile>peloton_data.py</StartupFile>
     <SearchPath />
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
     <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
+    <TestFramework>unittest</TestFramework>
+    <UnitTestPattern>*_test.py</UnitTestPattern>
+    <UnitTestRootDirectory>.</UnitTestRootDirectory>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
@@ -19,10 +22,10 @@
     <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="PyPelo\api_file_writes_tests.py" />
-    <Compile Include="PyPelo\api_tests.py" />
-    <Compile Include="PyPelo\peloton_data.py" />
-    <Compile Include="PyPelo\PyPelo.py" />
+    <Compile Include="api_file_writes_test.py" />
+    <Compile Include="api_test.py" />
+    <Compile Include="peloton_data.py" />
+    <Compile Include="PyPelo.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="PyPelo" />

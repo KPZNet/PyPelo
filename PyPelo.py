@@ -2,7 +2,7 @@ from ctypes.wintypes import PLONG
 import json
 from urllib import response
 import requests
-import json
+
 
 class PeloPerson:
 	username_or_email = ''
