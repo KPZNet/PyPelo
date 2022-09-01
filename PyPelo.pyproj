@@ -19,7 +19,7 @@
     <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="PyPelo\api_file_writes.py" />
+    <Compile Include="PyPelo\api_file_writes_tests.py" />
     <Compile Include="PyPelo\api_tests.py" />
     <Compile Include="PyPelo\peloton_data.py" />
     <Compile Include="PyPelo\PyPelo.py" />
