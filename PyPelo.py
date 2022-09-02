@@ -11,7 +11,7 @@ def testfunc(inValue):
 def readinsample100():
     status = False
     data = []
-    with open('rides_sample100.json') as f:
+    with open('rides_sample100.json',encoding='utf8') as f:
         data = json.load(f)
 
     if len(data) != 0:
