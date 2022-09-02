@@ -8,7 +8,7 @@ class TestAPIWrites(unittest.TestCase):
         self.status, self.userID, self.sessionID = PyPelo.PeloLogin('KenCeglia@hotmail.com', 'Tyrant@12k')
 
     def test_writejsontofile(self):
-        self.status, self.rideList = PyPelo.DumpRidesToJSONFile(self.userID, self.sessionID, 10)
+        self.status, self.rideList = PyPelo.DumpRidesToJSONFile(self.userID, self.sessionID, 100)
         self.assertEqual(self.status, True)
 
 
