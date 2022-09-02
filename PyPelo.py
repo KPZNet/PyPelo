@@ -3,11 +3,19 @@ import json
 from urllib import response
 import requests
 
+def readinsample100():
+    status = False
+    data = []
+    with open('rides_sample100.json') as f:
+        data = json.load(f)
 
+    if len(data) == 100:
+        status = True
+    return status, data
 class PeloPerson:
 	username_or_email = ''
 	password = ''
-		
+        
 def ConstructHeader(sessionID):
     cookie = f"peloton_session_id={sessionID}"
     headers = {
@@ -38,9 +46,9 @@ def PeloLogin(user, pw):
         "Content-Type": "application/json",
         }
     response = requests.request(method="POST", 
-                         url=urlLogin, 
-                         data=PPersonPayload, 
-                         headers=headers)
+                        url=urlLogin, 
+                        data=PPersonPayload, 
+                        headers=headers)
     if response.status_code == 200:
         status = True
         data = response.json()

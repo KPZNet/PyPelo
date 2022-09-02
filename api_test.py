@@ -1,11 +1,22 @@
 # Python code to demonstrate working of unittest
 import unittest
+import json
 import PyPelo
+
+class TestFileReads(unittest.TestCase):
+    
+    def setUp(self):
+        pass
+
+    def test_readinJsonSample100(self):
+        status, data = PyPelo.readinsample100()
+        self.assertEqual(status, True)
 
 class TestAuthentications(unittest.TestCase):
 
     def setUp(self):
         pass
+
 
     def test_login_success(self):
         status, userID, sessionID = PyPelo.PeloLogin('KenCeglia@hotmail.com', 'Tyrant@12k')
