@@ -9,9 +9,10 @@ def readinsample100():
     with open('rides_sample100.json') as f:
         data = json.load(f)
 
-    if len(data) == 100:
+    if len(data) != 0:
         status = True
     return status, data
+
 class PeloPerson:
 	username_or_email = ''
 	password = ''
@@ -138,7 +139,8 @@ def GetWorkoutUserDetails(sessionID, rideID):
 
     return status, retData
 
-def GetRides(userID, sessionID, pageSize, maxRides, secondsPerObservation = 60):
+def GetRides(userID, sessionID, maxRides, secondsPerObservation = 60):
+    pageSize = 25
     status, rides = GetRideList(userID, sessionID, pageSize, maxRides)
     if status == True:
         for ride in rides:
@@ -153,33 +155,8 @@ def GetRides(userID, sessionID, pageSize, maxRides, secondsPerObservation = 60):
 
     return status, rides
 
-def GetRideOutputTrend(userID, sessionID, pageSize, maxRides):
-    status, rides = GetRideList(userID, sessionID, pageSize, maxRides)
-    if status == True:
-        print(f"Got All Rides : {status}")
-        print(f"Ride Total : {rides.count}")
-        i = 1
-        for ride in rides:
-            print(f"Getting Ride : {i}")
-            status, rideEvent = GetWorkoutEvent(sessionID, ride['ride']['id'])
-            ride['workoutEvent'] = rideEvent
-            print(f"\tGot EVENT : {status}")
-
-            status, workoutDetails = GetWorkoutDetails(sessionID, ride['id'], 60)
-            ride['workoutDetails'] = workoutDetails
-            print(f"\tGot WORKOUT : {status}")
-
-            status, workoutUserDetails = GetWorkoutUserDetails(sessionID, ride['id'])
-            ride['workoutUserDetails'] = workoutUserDetails
-            print(f"\tGot USER : {status}")
-
-            i += 1
-            print("------------")
-
-    return status, rides
-
 def DumpRidesToJSONFile(userID, sessionID, numRides, secondsPerObservation = 60):
-    status, rideList = GetRideOutputTrend(userID, sessionID, 25, numRides)
+    status, rideList = GetRides(userID, sessionID, numRides)
     if status == True:
         with open("rides.json", "w") as outfile:
             json.dump(rideList, outfile)

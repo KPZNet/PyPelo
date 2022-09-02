@@ -3,20 +3,12 @@ import unittest
 import json
 import PyPelo
 
-class TestFileReads(unittest.TestCase):
-    
-    def setUp(self):
-        pass
-
-    def test_readinJsonSample100(self):
-        status, data = PyPelo.readinsample100()
-        self.assertEqual(status, True)
+from unittest.mock import Mock
 
 class TestAuthentications(unittest.TestCase):
 
     def setUp(self):
         pass
-
 
     def test_login_success(self):
         status, userID, sessionID = PyPelo.PeloLogin('KenCeglia@hotmail.com', 'Tyrant@12k')
@@ -32,7 +24,14 @@ class TestAPIs(unittest.TestCase):
         self.status, self.userID, self.sessionID = PyPelo.PeloLogin('KenCeglia@hotmail.com', 'Tyrant@12k')
 
     def test_rides(self):
-        self.status, self.rideList = PyPelo.GetRides(self.userID, self.sessionID, 5, 5)
+        self.status, self.rideList = PyPelo.GetRides(self.userID, self.sessionID, 5)
+        self.assertEqual(self.status, True)
+
+    def test_rides_m(self):
+        m_status, m_data = PyPelo.readinsample100()
+        PyPelo.GetRides = Mock()
+        PyPelo.GetRides.return_value =  m_status, m_data
+        self.status, self.rideList = PyPelo.GetRides(self.userID, self.sessionID, 5)
         self.assertEqual(self.status, True)
 
     def test_ridelist_onepage(self):
