@@ -22,14 +22,11 @@ class TestAPIs(unittest.TestCase):
 
     def setUp(self):
 
-
-
-
-
         PyPelo.PeloLogin = Mock()
         PyPelo.PeloLogin.return_value =  True, '101UserID', '101SessionID'
 
         m_status, m_data = PyPelo.readinsample100()
+
         PyPelo.GetRides = Mock()
         PyPelo.GetRides.return_value =  m_status, m_data
 
