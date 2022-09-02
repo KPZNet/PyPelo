@@ -3,6 +3,11 @@ import json
 from urllib import response
 import requests
 
+
+def testfunc(inValue):
+    return inValue + 1
+    
+
 def readinsample100():
     status = False
     data = []

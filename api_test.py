@@ -21,6 +21,21 @@ class TestAuthentications(unittest.TestCase):
 class TestAPIs(unittest.TestCase):
 
     def setUp(self):
+
+
+
+
+
+        PyPelo.PeloLogin = Mock()
+        PyPelo.PeloLogin.return_value =  True, '101UserID', '101SessionID'
+
+        m_status, m_data = PyPelo.readinsample100()
+        PyPelo.GetRides = Mock()
+        PyPelo.GetRides.return_value =  m_status, m_data
+
+        PyPelo.GetRideList = Mock()
+        PyPelo.GetRideList.return_value =  m_status, m_data
+
         self.status, self.userID, self.sessionID = PyPelo.PeloLogin('KenCeglia@hotmail.com', 'Tyrant@12k')
 
     def test_rides(self):
@@ -28,9 +43,6 @@ class TestAPIs(unittest.TestCase):
         self.assertEqual(self.status, True)
 
     def test_rides_m(self):
-        m_status, m_data = PyPelo.readinsample100()
-        PyPelo.GetRides = Mock()
-        PyPelo.GetRides.return_value =  m_status, m_data
         self.status, self.rideList = PyPelo.GetRides(self.userID, self.sessionID, 5)
         self.assertEqual(self.status, True)
 
