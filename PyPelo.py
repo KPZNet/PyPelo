@@ -148,7 +148,10 @@ def GetRides(userID, sessionID, maxRides, secondsPerObservation = 60):
     pageSize = 25
     status, rides = GetRideList(userID, sessionID, pageSize, maxRides)
     if status == True:
+        i = 1
         for ride in rides:
+            print(f"Ride : {i}")
+            i += 1
             status, rideEvent = GetWorkoutEvent(sessionID, ride['ride']['id'])
             ride['workoutEvent'] = rideEvent
 
