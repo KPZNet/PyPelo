@@ -5,6 +5,7 @@ import PyPelo
 
 from unittest.mock import Mock
 
+# Mocing the PyPelo module
 class TestAuthentications(unittest.TestCase):
 
     def setUp(self):
